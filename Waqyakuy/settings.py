@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app',
+    'rest_framework',
+    'drf_generators',
+
+
 ]
 
 MIDDLEWARE = [
@@ -75,8 +80,12 @@ WSGI_APPLICATION = 'Waqyakuy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'USER' :  'ale',
+        'NAME' :  'Amazonpedia',
+        'PASSWORD': 'ayylmao717',
+        'HOST':'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT':'3306',
     }
 }
 
@@ -99,6 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 15
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
