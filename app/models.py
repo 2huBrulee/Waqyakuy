@@ -92,10 +92,9 @@ class Diet(models.Model):
 
 class Donation(models.Model):
     donation_id = models.AutoField(primary_key=True)
-    animal = models.ForeignKey('Visit', models.DO_NOTHING)
-    user = models.ForeignKey('Visit', models.DO_NOTHING)
     donation_amount = models.FloatField()
     date = models.DateTimeField()
+    visit = models.ForeignKey('Visit', models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -224,6 +223,7 @@ class Visit(models.Model):
     user = models.ForeignKey(User, models.DO_NOTHING)
     likes = models.IntegerField(blank=True, null=True)
     favorites = models.IntegerField(blank=True, null=True)
+    visit_id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
