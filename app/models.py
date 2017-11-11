@@ -16,7 +16,7 @@ class Animal(models.Model):
     conservation_status = models.CharField(max_length=20)
     img_td = models.CharField(max_length=68)
     cry = models.CharField(max_length=68, blank=True, null=True)
-    description = models.CharField(max_length=200, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     size = models.FloatField(blank=True, null=True)
     weight = models.FloatField(blank=True, null=True)
 
@@ -60,7 +60,7 @@ class AreaRegion(models.Model):
 class Carriers(models.Model):
     vb = models.ForeignKey('VirusBacteria', models.DO_NOTHING)
     animal = models.ForeignKey(Animal, models.DO_NOTHING)
-    description = models.CharField(max_length=300, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     transmission = models.CharField(max_length=40, blank=True, null=True)
 
     class Meta:
@@ -71,7 +71,7 @@ class Carriers(models.Model):
 class Characteristic(models.Model):
     char_id = models.AutoField(primary_key=True)
     animal = models.ForeignKey(Animal, models.DO_NOTHING)
-    description = models.CharField(max_length=300, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     type = models.CharField(max_length=30, blank=True, null=True)
 
     class Meta:
@@ -83,7 +83,7 @@ class Diet(models.Model):
     diet_id = models.AutoField(primary_key=True)
     animal = models.ForeignKey(Animal, models.DO_NOTHING)
     food_name = models.CharField(max_length=30)
-    description = models.CharField(max_length=400, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -104,7 +104,7 @@ class Donation(models.Model):
 class Habitat(models.Model):
     habitat_id = models.AutoField(primary_key=True)
     animal = models.ForeignKey(Animal, models.DO_NOTHING)
-    description = models.CharField(max_length=300)
+    description = models.TextField()
     svg = models.CharField(max_length=68, blank=True, null=True)
 
     class Meta:
@@ -146,7 +146,7 @@ class Region(models.Model):
 class Report(models.Model):
     report_id = models.AutoField(primary_key=True)
     animal = models.ForeignKey(Animal, models.DO_NOTHING)
-    description = models.CharField(max_length=300, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     creation_date = models.DateTimeField()
     place = models.CharField(max_length=100)
 
@@ -185,7 +185,7 @@ class Taxonomy(models.Model):
 class Threat(models.Model):
     threat_id = models.AutoField(primary_key=True)
     animal = models.ForeignKey(Animal, models.DO_NOTHING)
-    description = models.CharField(max_length=300, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
