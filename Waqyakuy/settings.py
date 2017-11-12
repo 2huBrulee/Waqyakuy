@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'drf_generators',
 
 
+
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'Waqyakuy.urls'
 
 TEMPLATES = [
+
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
