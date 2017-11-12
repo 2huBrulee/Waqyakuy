@@ -3,6 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from app.serializers import AnimalSerializer, AnimalAreaSerializer, AreaSerializer, AreaRegionSerializer, CarriersSerializer, CharacteristicSerializer, DietSerializer, DonationSerializer, HabitatSerializer, ImagesSerializer, NewsSerializer, RegionSerializer, ReportSerializer, StarringSerializer, TaxonomySerializer, ThreatSerializer, UserSerializer, VirusBacteriaSerializer, VisitSerializer
 from app.models import Animal, AnimalArea, Area, AreaRegion, Carriers, Characteristic, Diet, Donation, Habitat, Images, News, Region, Report, Starring, Taxonomy, Threat, User, VirusBacteria, Visit
+from django.shortcuts import render
 
 
 class AnimalViewSet(ViewSet):
@@ -763,3 +764,4 @@ class VisitViewSet(ViewSet):
             return Response(status=404)
         item.delete()
         return Response(status=204)
+
