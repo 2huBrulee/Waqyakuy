@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'Waqyakuy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'USER' :  'ale',
+        'USER' :  'root',
         'NAME' :  'Amazonpedia',
-        'PASSWORD': 'ayylmao717',
+        'PASSWORD': 'digimon',
         'HOST':'localhost',   # Or an IP Address that your DB is hosted on
         'PORT':'3306',
     }

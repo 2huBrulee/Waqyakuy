@@ -26,8 +26,9 @@ class Animal(models.Model):
 
 
 class AnimalArea(models.Model):
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
-    area = models.ForeignKey('Area', models.DO_NOTHING)
+    animal_area_id = models.AutoField(primary_key=True)
+    animal = models.ForeignKey(Animal, on_delete = models.CASCADE)
+    area = models.ForeignKey('Area', on_delete = models.CASCADE)
 
     class Meta:
         managed = False
@@ -49,8 +50,9 @@ class Area(models.Model):
 
 
 class AreaRegion(models.Model):
-    area = models.ForeignKey(Area, models.DO_NOTHING)
-    region = models.ForeignKey('Region', models.DO_NOTHING)
+    area_region_id = models.AutoField(primary_key=True)
+    area = models.ForeignKey(Area, on_delete = models.CASCADE)
+    region = models.ForeignKey('Region', on_delete = models.CASCADE)
 
     class Meta:
         managed = False
@@ -58,7 +60,8 @@ class AreaRegion(models.Model):
 
 
 class Carriers(models.Model):
-    vb = models.ForeignKey('VirusBacteria', models.DO_NOTHING)
+    carrier_id = models.AutoField(primary_key=True)
+    vb = models.ForeignKey('VirusBacteria', on_delete=models.CASCADE)
     animal = models.ForeignKey(Animal, models.DO_NOTHING)
     description = models.TextField(blank=True, null=True)
     transmission = models.CharField(max_length=40, blank=True, null=True)
@@ -70,7 +73,7 @@ class Carriers(models.Model):
 
 class Characteristic(models.Model):
     char_id = models.AutoField(primary_key=True)
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
+    animal = models.OneToOneField(Animal, models.CASCADE)
     description = models.TextField(blank=True, null=True)
     type = models.CharField(max_length=30, blank=True, null=True)
 
@@ -81,7 +84,7 @@ class Characteristic(models.Model):
 
 class Diet(models.Model):
     diet_id = models.AutoField(primary_key=True)
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
+    animal = models.OneToOneField(Animal, models.CASCADE)
     food_name = models.CharField(max_length=30)
     description = models.TextField(blank=True, null=True)
 
@@ -94,7 +97,7 @@ class Donation(models.Model):
     donation_id = models.AutoField(primary_key=True)
     donation_amount = models.FloatField()
     date = models.DateTimeField()
-    visit = models.ForeignKey('Visit', models.DO_NOTHING)
+    visit = models.ForeignKey('Visit', on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -103,7 +106,7 @@ class Donation(models.Model):
 
 class Habitat(models.Model):
     habitat_id = models.AutoField(primary_key=True)
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
+    animal = models.OneToOneField(Animal, models.CASCADE)
     description = models.TextField()
     svg = models.CharField(max_length=68, blank=True, null=True)
 
@@ -114,7 +117,7 @@ class Habitat(models.Model):
 
 class Images(models.Model):
     img_id = models.AutoField(primary_key=True)
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
+    animal = models.ForeignKey(Animal, on_delete = models.CASCADE)
     img_link = models.CharField(max_length=68)
 
     class Meta:
@@ -145,7 +148,7 @@ class Region(models.Model):
 
 class Report(models.Model):
     report_id = models.AutoField(primary_key=True)
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
+    animal = models.ForeignKey(Animal,on_delete = models.CASCADE)
     description = models.TextField(blank=True, null=True)
     creation_date = models.DateTimeField()
     place = models.CharField(max_length=100)
@@ -156,8 +159,9 @@ class Report(models.Model):
 
 
 class Starring(models.Model):
-    news = models.ForeignKey(News, models.DO_NOTHING)
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
+    starring_id = models.AutoField(primary_key=True)
+    news = models.ForeignKey(News, on_delete=models.CASCADE)
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -175,7 +179,7 @@ class Taxonomy(models.Model):
     family = models.CharField(max_length=30, blank=True, null=True)
     genus = models.CharField(max_length=30, blank=True, null=True)
     species = models.CharField(max_length=30, blank=True, null=True)
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
+    animal = models.OneToOneField(Animal, models.CASCADE)
 
     class Meta:
         managed = False
@@ -184,7 +188,7 @@ class Taxonomy(models.Model):
 
 class Threat(models.Model):
     threat_id = models.AutoField(primary_key=True)
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
+    animal = models.OneToOneField(Animal, models.CASCADE)
     description = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -219,8 +223,9 @@ class VirusBacteria(models.Model):
 
 
 class Visit(models.Model):
-    animal = models.ForeignKey(Animal, models.DO_NOTHING)
-    user = models.ForeignKey(User, models.DO_NOTHING)
+    visit_id = models.AutoField(primary_key=True)
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.IntegerField(blank=True, null=True)
     favorites = models.IntegerField(blank=True, null=True)
     visit_id = models.AutoField(primary_key=True)
